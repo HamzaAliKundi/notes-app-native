@@ -101,12 +101,14 @@ const SignupScreen = () => {
         <TextInput
           style={styles.input}
           placeholder="Full Name"
+          placeholderTextColor="#7f8c8d"
           value={name}
           onChangeText={setName}
         />
         <TextInput
           style={[styles.input, emailError ? styles.inputError : null]}
           placeholder="Email"
+          placeholderTextColor="#7f8c8d"
           value={email}
           onChangeText={(text) => {
             setEmail(text);
@@ -119,6 +121,7 @@ const SignupScreen = () => {
           <TextInput
             style={styles.passwordInput}
             placeholder="Password"
+            placeholderTextColor="#7f8c8d"
             secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
@@ -138,6 +141,7 @@ const SignupScreen = () => {
           <TextInput
             style={styles.passwordInput}
             placeholder="Confirm Password"
+            placeholderTextColor="#7f8c8d"
             secureTextEntry={!showConfirmPassword}
             value={confirmPassword}
             onChangeText={setConfirmPassword}

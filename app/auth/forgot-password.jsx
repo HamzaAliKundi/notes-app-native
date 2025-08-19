@@ -2,13 +2,13 @@ import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
 import { useEffect, useRef, useState } from "react";
 import {
-    ActivityIndicator,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const ForgotPasswordScreen = () => {
@@ -66,6 +66,7 @@ const ForgotPasswordScreen = () => {
         <TextInput
           style={[styles.input, emailError ? styles.inputError : null]}
           placeholder="Email"
+          placeholderTextColor="#7f8c8d"
           value={email}
           onChangeText={(text) => {
             setEmail(text);

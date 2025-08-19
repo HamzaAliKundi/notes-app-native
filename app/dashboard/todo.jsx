@@ -437,13 +437,14 @@ const TodoScreen = () => {
           {/* Search Input */}
           <View style={styles.searchContainer}>
             <View style={styles.searchInput}>
-              <TextInput
-                style={styles.searchTextInput}
-                placeholder="Search todos..."
-                value={searchQuery}
-                onChangeText={setSearchQuery}
-                returnKeyType="search"
-              />
+                <TextInput
+                  style={styles.searchTextInput}
+                  placeholder="Search todos..."
+                  placeholderTextColor="#7f8c8d"
+                  value={searchQuery}
+                  onChangeText={setSearchQuery}
+                  returnKeyType="search"
+                />
             </View>
           </View>
 
@@ -503,13 +504,14 @@ const TodoScreen = () => {
 
             <View style={styles.modalBody}>
               <Text style={styles.inputLabel}>Todo Title</Text>
-              <TextInput
-                style={styles.modalInput}
-                placeholder="Enter todo title..."
-                value={todoTitle}
-                onChangeText={setTodoTitle}
-                autoFocus={true}
-              />
+                              <TextInput
+                  style={styles.modalInput}
+                  placeholder="Enter todo title..."
+                  placeholderTextColor="#7f8c8d"
+                  value={todoTitle}
+                  onChangeText={setTodoTitle}
+                  autoFocus={true}
+                />
 
               <Text style={styles.inputLabel}>Category</Text>
               <View style={styles.categoryOptions}>
