@@ -160,8 +160,23 @@ const TodoScreen = () => {
   const toggleTodo = async (id) => {
     if (!token) return;
 
-    try {
+    // Find the current todo to check if we're checking or unchecking
+    const currentTodo = todos.find(todo => todo._id === id);
+    const isCurrentlyCompleted = currentTodo?.completed;
+
+    // Only show loader when unchecking (making completed = false)
+    if (!isCurrentlyCompleted) {
       setTogglingTodo(id);
+    }
+
+    try {
+      // Optimistically update the UI first
+      setTodos(
+        todos.map((todo) =>
+          todo._id === id ? { ...todo, completed: !todo.completed } : todo
+        )
+      );
+
       const response = await axios.patch(
         `${API_BASE_URL}/notes/${id}/toggle`,
         {},
@@ -172,16 +187,23 @@ const TodoScreen = () => {
         }
       );
 
-      if (response.status === 200) {
-        // Update the todo in the list
+      if (response.status !== 200) {
+        // If API call failed, revert the optimistic update
         setTodos(
           todos.map((todo) =>
-            todo._id === id ? { ...todo, completed: !todo.completed } : todo
+            todo._id === id ? { ...todo, completed: isCurrentlyCompleted } : todo
           )
         );
+        Alert.alert("Error", "Failed to update todo. Please try again.");
       }
     } catch (error) {
       console.log("Error toggling todo:", error);
+      // Revert the optimistic update on error
+      setTodos(
+        todos.map((todo) =>
+          todo._id === id ? { ...todo, completed: isCurrentlyCompleted } : todo
+        )
+      );
       Alert.alert("Error", "Failed to update todo. Please try again.");
     } finally {
       setTogglingTodo(null);

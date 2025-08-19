@@ -5,14 +5,14 @@ import LottieView from "lottie-react-native";
 
 import { useEffect, useRef, useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 const SignupScreen = () => {
@@ -46,6 +46,7 @@ const SignupScreen = () => {
       name: name,
       email: email,
       password: password,
+      isEmailVerified: true
     };
     try {
       const response = await axios.post(
