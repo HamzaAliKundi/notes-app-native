@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
@@ -40,6 +41,8 @@ const LoginScreen = () => {
     try {
         const response = await axios.post("https://node-starter-temlate.onrender.com/api/v1/auth/login", payload);
         if(response?.status === 200) {
+            const token = response.data.token;
+            await AsyncStorage.setItem("userToken", token);
             router.push("/dashboard/todo");
         } else {
             setCredentialsError("Invalid credentials");
